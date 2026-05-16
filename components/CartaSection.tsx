@@ -10,6 +10,7 @@ interface Plato {
   precio: string;
   badge?: string;
   alergenos?: string;
+  imagen?: string;
 }
 
 interface Categoria {
@@ -35,6 +36,7 @@ const CATEGORIAS: Categoria[] = [
           "Cortes gruesos de corvina, marinados con lima, ají limo, cebolla morada, choclo y boniato. Acompañado de tortilla de choclo.",
         precio: "17 €",
         alergenos: "(4)",
+        imagen: "/images/ceviches/ceviche-norteño.png",
       },
       {
         nombre: "Ceviche Carretillero",
@@ -43,6 +45,7 @@ const CATEGORIAS: Categoria[] = [
         precio: "19 €",
         badge: "Favorito",
         alergenos: "(1, 2, 3, 4, 13)",
+        imagen: "/images/ceviches/ceviche-carretillero.jpg",
       },
       {
         nombre: "Ceviche Mixto",
@@ -50,6 +53,7 @@ const CATEGORIAS: Categoria[] = [
           "Corvina, calamar y langostinos en leche de tigre tradicional. Camote, choclo y cebolla morada.",
         precio: "20 €",
         alergenos: "(2, 4, 13)",
+        imagen: "/images/ceviches/ceviche-mixto.jpg",
       },
     ],
   },
@@ -66,6 +70,7 @@ const CATEGORIAS: Categoria[] = [
           "Finas láminas de corvina en salsa cremosa de ají amarillo.",
         precio: "16 €",
         alergenos: "(4)",
+        imagen: "/images/tiraditos/tiradito-aji-amarillo.jpg",
       },
       {
         nombre: "Tiradito Nikkei",
@@ -74,6 +79,7 @@ const CATEGORIAS: Categoria[] = [
         precio: "17 €",
         badge: "Chef",
         alergenos: "(4, 11)",
+        imagen: "/images/tiraditos/tiradito-nikkei.jpg",
       },
       {
         nombre: "Tiradito de Rocoto",
@@ -81,6 +87,7 @@ const CATEGORIAS: Categoria[] = [
           "Tiradito suave con crema de rocoto ahumado, cebollita china, chips de plátano.",
         precio: "17 €",
         alergenos: "(4)",
+        imagen: "/images/tiraditos/tiradito-rocoto.jpg",
       },
     ],
   },
@@ -97,6 +104,7 @@ const CATEGORIAS: Categoria[] = [
           "Puré de papa con ají amarillo y limón, relleno de pollo o atún con mayonesa. Palta fresca.",
         precio: "13 €",
         alergenos: "(3, 4, 7)",
+        imagen: "/images/causas/causa-limeña.jpg",
       },
       {
         nombre: "Causa de Langostinos",
@@ -105,12 +113,14 @@ const CATEGORIAS: Categoria[] = [
         precio: "14 €",
         badge: "Premium",
         alergenos: "(2, 7)",
+        imagen: "/images/causas/causa-langostinos.jpg",
       },
       {
         nombre: "Causa Acevichada",
         descripcion: "Causa con ceviche de corvina y palta.",
         precio: "16 €",
         alergenos: "(4)",
+        imagen: "/images/causas/causa-acevichada.jpg",
       },
     ],
   },
@@ -127,6 +137,7 @@ const CATEGORIAS: Categoria[] = [
           "Papa dorada y crujiente, rellena de guiso criollo con carne de cerdo y acompañada de cremosa salsa huancaína.",
         precio: "10 €",
         alergenos: "(3, 7)",
+        imagen: "/images/piqueos/papa-rellena-huancaína.jpg",
       },
       {
         nombre: "Papa a la Huancaína",
@@ -135,6 +146,7 @@ const CATEGORIAS: Categoria[] = [
         precio: "7 €",
         badge: "Clásico",
         alergenos: "(7)",
+        imagen: "/images/piqueos/papa-huancaína.jpg",  
       },
       {
         nombre: "Langostinos al Panko con Mermelada de Rocoto",
@@ -143,6 +155,7 @@ const CATEGORIAS: Categoria[] = [
         precio: "15 €",
         badge: "Estrella",
         alergenos: "(1, 2, 6, 11)",
+        imagen: "/images/piqueos/langostinos-panko.jpg",
       },
       {
         nombre: "Chicharrón Mixto",
@@ -150,6 +163,7 @@ const CATEGORIAS: Categoria[] = [
           "Selección de mariscos y pescados fritos al estilo criollo, crocantes y jugosos, servidos con yuca dorada y salsa criolla.",
         precio: "17 €",
         alergenos: "(1, 2, 3, 4)",
+        imagen: "/images/piqueos/chicharrón-mixto.jpg",
       },
     ],
   },
@@ -167,6 +181,7 @@ const CATEGORIAS: Categoria[] = [
         precio: "15 €",
         badge: "Clásico",
         alergenos: "(3, 7)",
+        imagen: "/images/guisos/ají-gallina.jpg",
       },
       {
         nombre: "Lomo Saltado",
@@ -175,6 +190,7 @@ const CATEGORIAS: Categoria[] = [
         precio: "18 €",
         badge: "Icónico",
         alergenos: "(6, 13)",
+        imagen: "/images/guisos/lomo-saltado.jpg",
       },
       {
         nombre: "Carapulcra",
@@ -182,6 +198,7 @@ const CATEGORIAS: Categoria[] = [
           "Guiso ancestral de papa seca y cerdo cocido a fuego lento con ají panca, maní tostado y especias peruanas, acompañado de arroz blanco.",
         precio: "17 €",
         alergenos: "(5)",
+        imagen: "/images/guisos/carapulcra.jpg",
       },
       {
         nombre: "Picante de Mariscos",
@@ -189,6 +206,7 @@ const CATEGORIAS: Categoria[] = [
           "Guiso criollo de mariscos en salsa cremosa y ligeramente picante, acompañado de arroz blanco.",
         precio: "18 €",
         alergenos: "(2, 7, 13)",
+        imagen: "/images/guisos/picante-mariscos.jpg",
       },
       {
         nombre: "Pescado a lo Macho",
@@ -197,6 +215,7 @@ const CATEGORIAS: Categoria[] = [
         precio: "19 €",
         badge: "Chef",
         alergenos: "(1, 2, 4, 7, 13)",
+        imagen: "/images/guisos/pescado-lo-macho.jpg",
       },
       {
         nombre: "Pescado Empanizado con Papas Fritas",
@@ -204,6 +223,7 @@ const CATEGORIAS: Categoria[] = [
           "Crujiente filete de corvina empanizado, servido con papas fritas doradas.",
         precio: "13 €",
         alergenos: "(1, 3, 4)",
+        imagen: "/images/guisos/pescado-empanizado.jpg",
       },
     ],
   },
@@ -221,6 +241,7 @@ const CATEGORIAS: Categoria[] = [
         precio: "19 €",
         badge: "Estrella",
         alergenos: "(2, 7, 13)",
+        imagen: "/images/arroces/arroz-mariscos.jpg",
       },
       {
         nombre: "Arroz Verde con Mariscos",
@@ -228,6 +249,7 @@ const CATEGORIAS: Categoria[] = [
           "Arroz aromático al culantro, salteado con mariscos frescos y coronado con el auténtico sabor criollo del mar.",
         precio: "19 €",
         alergenos: "(2, 7, 13)",
+        imagen: "/images/arroces/arroz-verde.jpg",
       },
       {
         nombre: "Arroz Chaufa de Mariscos o Pollo",
@@ -235,6 +257,7 @@ const CATEGORIAS: Categoria[] = [
           "Clásico arroz frito al estilo peruano, salteado al wok con huevo, verduras frescas y el toque especial de la casa.",
         precio: "16 €",
         alergenos: "(2, 3, 6, 11, 13)",
+        imagen: "/images/arroces/arroz-chaufa.jpg",
       },
       {
         nombre: "Tacu Tacu con Picante de Mariscos",
@@ -243,6 +266,7 @@ const CATEGORIAS: Categoria[] = [
         precio: "22 €",
         badge: "Premium",
         alergenos: "(2, 7, 13)",
+        imagen: "/images/arroces/tacu-tacu-mariscos.jpg",
       },
       {
         nombre: "Tacu Tacu con Lomo Saltado",
@@ -250,6 +274,7 @@ const CATEGORIAS: Categoria[] = [
           "Crocante tacu tacu de arroz y alubias, servido con jugoso lomo saltado al wok, verduras salteadas y el inconfundible sabor criollo.",
         precio: "22 €",
         alergenos: "(6, 13)",
+        imagen: "/images/arroces/tacu-tacu-lomo.jpg",
       },
     ],
   },
@@ -265,7 +290,8 @@ function PlatoCard({ plato, index }: { plato: Plato; index: number }) {
       style={{
         background: "#120E0A",
         border: "1px solid rgba(201,168,76,0.09)",
-        padding: "26px 22px",
+        // Reducimos el padding superior/lateral si hay imagen para que quede mejor asentada
+        padding: plato.imagen ? "0px 22px 26px 22px" : "26px 22px", 
         position: "relative",
         overflow: "hidden",
         cursor: "default",
@@ -277,21 +303,47 @@ function PlatoCard({ plato, index }: { plato: Plato; index: number }) {
         transition: { duration: 0.25 },
       }}
     >
+      
+      {plato.imagen && (
+  <div style={{ 
+    width: "calc(100% + 44px)", 
+    marginLeft: "-22px",        
+    marginTop: "-26px",         
+    height: "180px",            
+    position: "relative",
+    marginBottom: "20px",
+    overflow: "hidden"
+  }}>
+    <img 
+      src={plato.imagen} // 👈 Esto jalará automáticamente "/images/ceviche-norteno.png"
+      alt={plato.nombre} // 👈 Esto pondrá automáticamente "Ceviche Norteño" como texto alternativo
+      style={{
+        width: "100%",
+        height: "100%",
+        objectFit: "cover", 
+      }}
+    />
+  </div>
+)}
+
       {/* Badge */}
       {plato.badge && (
         <span
           style={{
             position: "absolute",
-            top: "14px",
+            // Si hay imagen, bajamos el badge para que flote sobre ella de manera elegante
+            top: plato.imagen ? "14px" : "14px", 
             right: "14px",
-            background: "rgba(201,168,76,0.12)",
+            background: "rgba(18, 14, 10, 0.75)", // Más opaco para que se lea sobre la foto
+            backdropFilter: "blur(4px)",
             border: "1px solid rgba(201,168,76,0.28)",
             color: "#C9A84C",
             fontSize: "7.5px",
             letterSpacing: "2px",
-            padding: "3px 8px",
+            padding: "4px 8px",
             textTransform: "uppercase",
             fontFamily: "Montserrat, system-ui, sans-serif",
+            zIndex: 2, // Asegura que se vea por encima de la foto
           }}
         >
           {plato.badge}
@@ -306,7 +358,7 @@ function PlatoCard({ plato, index }: { plato: Plato; index: number }) {
           fontWeight: 300,
           color: "#F5EDD8",
           marginBottom: "8px",
-          paddingRight: plato.badge ? "70px" : "0",
+          paddingRight: plato.badge && !plato.imagen ? "70px" : "0", // Ajuste de espacio
           lineHeight: 1.25,
         }}
       >

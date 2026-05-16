@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useReveal } from "@/hooks/useReveal";
 import RevealSection from "@/components/Revealsection";
 
@@ -12,9 +13,10 @@ const PLATOS = [
     precio: "18 €",
     chakra: "Ajna · Tercer Ojo",
     vino: "Ceramic Tinto",
-    color: "rgba(220,120,40,0.1)",
+    color: "rgba(220,120,40,0.2)", 
     simbolo: "⬡",
     badge: "Icónico",
+    imagen: "/images/guisos/lomo-saltado.jpg", 
   },
   {
     nombre: "Ceviche Norteño",
@@ -23,9 +25,10 @@ const PLATOS = [
     precio: "17 €",
     chakra: "Muladhara · Raíz",
     vino: "Ceramic Rosado",
-    color: "rgba(40,140,220,0.1)",
+    color: "rgba(40,140,220,0.2)",
     simbolo: "♦",
     badge: "Norteño",
+    imagen: "/images/ceviches/ceviche-norteño.png",
   },
   {
     nombre: "Arroz con Mariscos Meloso",
@@ -34,132 +37,85 @@ const PLATOS = [
     precio: "19 €",
     chakra: "Anahata · Corazón",
     vino: "Bobal Dulce",
-    color: "rgba(50,180,130,0.1)",
+    color: "rgba(50,180,130,0.2)",
     simbolo: "❋",
     badge: "Estrella",
+    imagen: "/images/arroces/arroz-mariscos.jpg",
   },
   {
     nombre: "Tiradito Nikkei",
     descripcion:
-      "Finas láminas de corvina con crema de ají amarillo al estilo nikkei, toques de soya y sésamo tostado. La fusión japonesa-peruana llevada a su máxima expresión.",
+      "Finas láminas de corvina con crema de ají amarillo al estilo nikkei, toques de soya y sésamo tostado. La fusion japonesa-peruana llevada a su máxima expresión.",
     precio: "17 €",
     chakra: "Svadhisthana · Sacro",
     vino: "Bobal Blanco",
-    color: "rgba(100,50,200,0.1)",
+    color: "rgba(100,50,200,0.2)",
     simbolo: "◈",
     badge: "Chef",
+    imagen: "/images/tiraditos/tiradito-nikkei.jpg",
   },
 ];
 
 function EstellaCard({
   plato,
-  index,
 }: {
   plato: (typeof PLATOS)[0];
-  index: number;
 }) {
-  const { ref, visible } = useReveal(0.1);
-  const isLarge = index === 0; // Primera card ocupa más espacio en desktop
-
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 32 }}
-      animate={visible ? { opacity: 1, y: 0 } : {}}
-      transition={{
-        duration: 0.8,
-        delay: index * 0.1,
-        ease: [0.22, 1, 0.36, 1],
-      }}
+    <div
       style={{
-        gridRow: isLarge ? "span 2" : "span 1",
         position: "relative",
         overflow: "hidden",
         background: "#120E0A",
-        border: "1px solid rgba(201,168,76,0.09)",
-        minHeight: isLarge ? "420px" : "200px",
+        border: "1px solid rgba(201,168,76,0.14)",
+        height: "460px", // 💡 Altura máxima premium estandarizada para todos por igual
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-end",
         cursor: "default",
       }}
-      whileHover={{ borderColor: "rgba(201,168,76,0.28)", transition: { duration: 0.3 } }}
     >
-      {/* Fondo visual artístico con SVG */}
+      {/* 📸 Fotos reales de fondo */}
+      {plato.imagen && (
+        <img
+          src={plato.imagen}
+          alt={plato.nombre}
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            opacity: 0.55, 
+            zIndex: 0,
+          }}
+        />
+      )}
+
+      {/* Capa de color del Chakra */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          background: `radial-gradient(ellipse at 40% 40%, ${plato.color}, transparent 65%)`,
-          transition: "opacity 0.4s ease",
+          background: `radial-gradient(ellipse at 50% 30%, ${plato.color}, transparent 80%)`,
+          mixBlendMode: "screen",
+          zIndex: 1,
         }}
       />
 
-      {/* SVG decorativo único por plato */}
-      <svg
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          opacity: 0.07,
-        }}
-        viewBox="0 0 400 400"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle
-          cx="200"
-          cy="180"
-          r="120"
-          fill="none"
-          stroke="#C9A84C"
-          strokeWidth="0.5"
-        />
-        <circle
-          cx="200"
-          cy="180"
-          r="80"
-          fill="none"
-          stroke="#C9A84C"
-          strokeWidth="0.5"
-        />
-        <circle
-          cx="200"
-          cy="180"
-          r="40"
-          fill="none"
-          stroke="#C9A84C"
-          strokeWidth="0.5"
-        />
-        <line
-          x1="80"
-          y1="180"
-          x2="320"
-          y2="180"
-          stroke="#C9A84C"
-          strokeWidth="0.4"
-        />
-        <line
-          x1="200"
-          y1="60"
-          x2="200"
-          y2="300"
-          stroke="#C9A84C"
-          strokeWidth="0.4"
-        />
-      </svg>
-
-      {/* Símbolo grande decorativo */}
+      {/* Símbolo místico */}
       <div
         style={{
           position: "absolute",
-          top: "clamp(20px, 4%, 32px)",
-          right: "clamp(20px, 4%, 32px)",
-          fontSize: "clamp(48px, 8vw, 72px)",
+          top: "24px",
+          right: "24px",
+          fontSize: "24px",
           color: "#C9A84C",
-          opacity: 0.07,
+          opacity: 0.4,
           lineHeight: 1,
           pointerEvents: "none",
+          zIndex: 2,
         }}
       >
         {plato.simbolo}
@@ -170,9 +126,10 @@ function EstellaCard({
         <span
           style={{
             position: "absolute",
-            top: "clamp(16px, 3%, 24px)",
-            left: "clamp(16px, 3%, 24px)",
-            background: "rgba(201,168,76,0.12)",
+            top: "24px",
+            left: "24px",
+            background: "rgba(18, 14, 10, 0.85)", 
+            backdropFilter: "blur(4px)",
             border: "1px solid rgba(201,168,76,0.3)",
             color: "#C9A84C",
             fontSize: "7.5px",
@@ -180,23 +137,23 @@ function EstellaCard({
             padding: "4px 10px",
             textTransform: "uppercase",
             fontFamily: "Montserrat, system-ui, sans-serif",
+            zIndex: 2,
           }}
         >
           {plato.badge}
         </span>
       )}
 
-      {/* Contenido inferior */}
+      {/* Texto interno con soporte de degradado oscuro completo */}
       <div
         style={{
           position: "relative",
-          zIndex: 1,
-          padding: "clamp(20px, 4%, 32px)",
+          zIndex: 2,
+          padding: "32px",
           background:
-            "linear-gradient(to top, rgba(10,8,6,0.95) 0%, rgba(10,8,6,0.4) 60%, transparent 100%)",
+            "linear-gradient(to top, rgba(10,8,6,1) 0%, rgba(10,8,6,0.95) 70%, rgba(10,8,6,0.4) 92%, transparent 100%)",
         }}
       >
-        {/* Chakra */}
         <p
           style={{
             fontFamily: "Montserrat, system-ui, sans-serif",
@@ -204,7 +161,7 @@ function EstellaCard({
             letterSpacing: "4px",
             textTransform: "uppercase",
             color: "#C9A84C",
-            opacity: 0.7,
+            opacity: 0.9,
             marginBottom: "8px",
             fontWeight: 300,
           }}
@@ -212,46 +169,34 @@ function EstellaCard({
           {plato.chakra}
         </p>
 
-        {/* Nombre */}
         <h3
           style={{
             fontFamily: "Cormorant Garamond, Georgia, serif",
-            fontSize: "clamp(24px, 3.5vw, 34px)",
+            fontSize: "clamp(24px, 3.5vw, 32px)",
             fontWeight: 300,
             color: "#F5EDD8",
             marginBottom: "10px",
             lineHeight: 1.15,
+            textShadow: "0 2px 4px rgba(0,0,0,0.5)",
           }}
         >
           {plato.nombre}
         </h3>
 
-        {/* Descripción – solo en la card grande */}
-        {isLarge && (
-          <p
-            style={{
-              fontFamily: "Montserrat, system-ui, sans-serif",
-              fontSize: "12px",
-              color: "rgba(245,237,216,0.5)",
-              lineHeight: 1.75,
-              marginBottom: "14px",
-              fontWeight: 300,
-              maxWidth: "420px",
-            }}
-          >
-            {plato.descripcion}
-          </p>
-        )}
-
-        {/* Precio + Vino */}
-        <div
+        <p
           style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "16px",
-            flexWrap: "wrap",
+            fontFamily: "Montserrat, system-ui, sans-serif",
+            fontSize: "11.5px",
+            color: "rgba(245,237,216,0.7)",
+            lineHeight: 1.65,
+            marginBottom: "14px",
+            fontWeight: 300,
           }}
         >
+          {plato.descripcion}
+        </p>
+
+        <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
           <span
             style={{
               fontFamily: "Cormorant Garamond, Georgia, serif",
@@ -270,22 +215,45 @@ function EstellaCard({
               color: "#9E3345",
               textTransform: "uppercase",
               fontWeight: 300,
+              background: "rgba(10,8,6,0.5)",
+              padding: "2px 6px",
             }}
           >
             🍷 {plato.vino}
           </span>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
 export default function PlatosEstrella() {
+  const { ref, visible } = useReveal(0.1);
+  const [startIndex, setStartIndex] = useState(0);
+
+  // 💡 Configuración del Carrusel Responsivo:
+  // Muestra 3 platos simultáneos en pantallas grandes y de manera decreciente en tablets/móviles
+  const platosVisibles = 3; 
+
+  const nextSlide = () => {
+    setStartIndex((prev) => (prev + 1) % PLATOS.length);
+  };
+
+  const prevSlide = () => {
+    setStartIndex((prev) => (prev - 1 + PLATOS.length) % PLATOS.length);
+  };
+
+  // Generamos un array rotativo infinito para simular el carrusel sin saltos bruscos
+  const itemsAMostrar = Array.from({ length: platosVisibles }).map((_, i) => {
+    return PLATOS[(startIndex + i) % PLATOS.length];
+  });
+
   return (
-    <div style={{ background: "#1A1410", padding: "clamp(64px, 10vw, 120px) 0" }}>
-      <div style={{ padding: "0 clamp(20px, 5vw, 80px)" }}>
+    <div style={{ background: "#1A1410", padding: "clamp(64px, 10vw, 120px) 0", overflow: "hidden" }}>
+      <div style={{ padding: "0 clamp(20px, 5vw, 80px)", position: "relative" }}>
+        
         {/* Header */}
-        <RevealSection style={{ textAlign: "center", marginBottom: "60px" }}>
+        <RevealSection style={{ textAlign: "center", marginBottom: "48px" }}>
           <span
             style={{
               fontFamily: "Montserrat, system-ui, sans-serif",
@@ -309,38 +277,104 @@ export default function PlatosEstrella() {
             }}
           >
             Platos que{" "}
-            <em style={{ fontStyle: "italic", color: "#C9A84C" }}>
-              definen
-            </em>{" "}
+            <em style={{ fontStyle: "italic", color: "#C9A84C" }}>definen</em>{" "}
             CHAKRA
           </h2>
         </RevealSection>
 
-        {/* Grid asimétrico */}
-        <div
+        {/* 🏹 BOTONES DE FLECHAS (Alineados a los extremos del contenedor) */}
+        <div style={{ 
+          display: "flex", 
+          justifyContent: "flex-end", 
+          gap: "12px", 
+          marginBottom: "24px",
+          paddingRight: "4px"
+        }}>
+          <button
+            onClick={prevSlide}
+            style={{
+              background: "none",
+              border: "1px solid rgba(201,168,76,0.3)",
+              color: "#C9A84C",
+              fontSize: "18px",
+              width: "42px",
+              height: "42px",
+              borderRadius: "50%",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              transition: "all 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(201,168,76,0.1)";
+              e.currentTarget.style.borderColor = "#C9A84C";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+              e.currentTarget.style.borderColor = "rgba(201,168,76,0.3)";
+            }}
+          >
+            ‹
+          </button>
+          <button
+            onClick={nextSlide}
+            style={{
+              background: "none",
+              border: "1px solid rgba(201,168,76,0.3)",
+              color: "#C9A84C",
+              fontSize: "18px",
+              width: "42px",
+              height: "42px",
+              borderRadius: "50%",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              transition: "all 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(201,168,76,0.1)";
+              e.currentTarget.style.borderColor = "#C9A84C";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+              e.currentTarget.style.borderColor = "rgba(201,168,76,0.3)";
+            }}
+          >
+            ›
+          </button>
+        </div>
+
+        {/* 📊 CONTENEDOR ANMADO DEL CARRUSEL */}
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 20 }}
+          animate={visible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 300px), 1fr))",
-            gap: "3px",
+            // Un grid fluido que en PC muestra 3 columnas perfectas del mismo tamaño gigante
+            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 320px), 1fr))",
+            gap: "24px",
           }}
         >
-          {/* En desktop: primera columna más larga */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateRows: "1fr",
-              gap: "3px",
-            }}
-            className="col-span-1 lg:col-span-1"
-          >
-            <EstellaCard plato={PLATOS[0]} index={0} />
-          </div>
-
-          {/* Resto de platos */}
-          {PLATOS.slice(1).map((plato, i) => (
-            <EstellaCard key={plato.nombre} plato={plato} index={i + 1} />
-          ))}
-        </div>
+          <AnimatePresence mode="popLayout">
+            {itemsAMostrar.map((plato, idx) => (
+              <motion.div
+                key={plato.nombre + "-" + startIndex + "-" + idx}
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                style={{ width: "100%" }}
+              >
+                <EstellaCard plato={plato} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </div>
   );
