@@ -1,30 +1,27 @@
-import type { Metadata } from "next";
-// @ts-ignore: CSS imports are handled by Next.js
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0A0806",
+};
 
 export const metadata: Metadata = {
   title: "CHAKRA Cocina Peruana",
-  description:
-    "Una experiencia gastronómica que celebra la riqueza culinaria con alma mediterránea. Cada plato representa la energía de un chakra.",
-  keywords:
-    "restaurante peruano, cocina peruana, ceviche, chakra restaurante, lomo saltado",
-  openGraph: {
-    title: "CHAKRA Cocina Peruana",
-    description:
-      "Una experiencia peruana que despierta todos tus sentidos. Sabores del Perú reinterpretados con alma mediterránea.",
-    locale: "es_ES",
-    type: "website",
-  },
+  description: "Una experiencia gastronómica que celebra la riqueza culinaria con alma mediterránea.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-      <body style={{ background: "#0A0806" }}>{children}</body>
+      <head>
+        {/* Esto fuerza al móvil a no hacer zoom raro */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+      </head>
+      <body style={{ background: "#0A0806", margin: 0, padding: 0 }}>
+        {children}
+      </body>
     </html>
   );
 }
