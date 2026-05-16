@@ -5,6 +5,8 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export default function CustomCursor() {
   const [mounted, setMounted] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
@@ -13,23 +15,32 @@ export default function CustomCursor() {
   const followerY = useSpring(mouseY, springCfg);
 
   useEffect(() => {
+    // 1. Comprobamos si es un dispositivo táctil
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    // Si es táctil, no hacemos nada
+    if (isTouchDevice) return;
+
     setMounted(true);
+
     const move = (e: MouseEvent) => {
+      // Solo mostramos el cursor cuando el ratón se mueve por primera vez
+      if (!isVisible) setIsVisible(true);
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
     };
+
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, isVisible]);
 
-  // No renderizar en SSR ni en pantallas táctiles
-  if (!mounted) return null;
+  // Si no está montado, es táctil o no se ha movido el ratón, no renderizamos nada
+  if (!mounted || !isVisible) return null;
 
   return (
     <>
       {/* Punto principal */}
       <motion.div
-        className="hidden md:block"
         style={{
           position: "fixed",
           left: mouseX,
@@ -47,7 +58,6 @@ export default function CustomCursor() {
       />
       {/* Círculo seguidor */}
       <motion.div
-        className="hidden md:block"
         style={{
           position: "fixed",
           left: followerX,
