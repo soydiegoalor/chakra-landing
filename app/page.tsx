@@ -30,8 +30,7 @@ export default function Home() {
     <>
       <Loader visible={loading} />
       <CustomCursor />
-      <ReservaModal open={modalOpen} onClose={closeReserva} />
-
+<ReservaModal isOpen={modalOpen} onClose={closeReserva} />
       <main
         style={{ background: "#0A0806", overflowX: "hidden" }}
         aria-label="CHAKRA Cocina Peruana"

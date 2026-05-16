@@ -128,9 +128,6 @@ export default function Hero({ onReserva }: HeroProps) {
             Puerto de Sagunto · Cocina Viva · Alma Peruana
           </motion.p>
 
-          {/* Línea deco */}
-          <motion.div variants={item} className="deco-line" style={{ marginBottom: "28px" }} />
-
           {/* Título */}
           <motion.h1
             variants={item}
@@ -171,22 +168,68 @@ export default function Hero({ onReserva }: HeroProps) {
             de Vicente Gandía.
           </motion.p>
 
-          {/* Botones */}
+          {/* 🏹 BOTONES PREMIUM INTEGRADOS */}
           <motion.div
             variants={item}
             style={{
               display: "flex",
-              gap: "16px",
+              gap: "20px",
               justifyContent: "center",
               flexWrap: "wrap",
+              alignItems: "center",
             }}
           >
-            <button className="btn-primary" onClick={onReserva}>
+            {/* Botón Principal: Reservar Mesa */}
+            <motion.button 
+              onClick={onReserva}
+              style={{
+                background: "#C9A84C",
+                color: "#0A0806",
+                border: "1px solid #C9A84C",
+                fontFamily: "Montserrat, system-ui, sans-serif",
+                fontSize: "11px",
+                letterSpacing: "2.5px",
+                textTransform: "uppercase",
+                padding: "16px 36px",
+                cursor: "pointer",
+                fontWeight: 400,
+                transition: "all 0.3s ease",
+              }}
+              whileHover={{
+                background: "transparent",
+                color: "#C9A84C",
+                boxShadow: "0 0 20px rgba(201,168,76,0.2)",
+              }}
+              whileTap={{ scale: 0.98 }}
+            >
               Reservar Mesa
-            </button>
-            <button className="btn-secondary" onClick={scrollToCarta}>
+            </motion.button>
+
+            {/* Botón Secundario: Ver Carta */}
+            <motion.button 
+              onClick={scrollToCarta}
+              style={{
+                background: "transparent",
+                color: "#F5EDD8",
+                border: "1px solid rgba(245,237,216,0.25)",
+                fontFamily: "Montserrat, system-ui, sans-serif",
+                fontSize: "11px",
+                letterSpacing: "2.5px",
+                textTransform: "uppercase",
+                padding: "16px 36px",
+                cursor: "pointer",
+                fontWeight: 300,
+                transition: "all 0.3s ease",
+              }}
+              whileHover={{
+                borderColor: "#C9A84C",
+                color: "#C9A84C",
+                background: "rgba(201,168,76,0.03)",
+              }}
+              whileTap={{ scale: 0.98 }}
+            >
               Ver Carta
-            </button>
+            </motion.button>
           </motion.div>
 
           {/* Separadores de categorías */}
@@ -197,7 +240,7 @@ export default function Hero({ onReserva }: HeroProps) {
               gap: "0",
               justifyContent: "center",
               flexWrap: "wrap",
-              marginTop: "52px",
+              marginTop: "64px",
             }}
           >
             {["Ceviches", "Tiraditos", "Causas", "Guisos", "Arroces"].map(
@@ -248,7 +291,7 @@ export default function Hero({ onReserva }: HeroProps) {
         }}
         aria-label="Descubrir"
       >
-        <div className="scroll-line-bar" style={{ height: "60px" }} />
+        <div style={{ height: "45px", width: "1px", background: "linear-gradient(to bottom, #8A7A6A, transparent)", marginBottom: "4px" }} />
         <span
           style={{
             fontFamily: "Montserrat, system-ui, sans-serif",

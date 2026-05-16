@@ -188,15 +188,30 @@ export default function CTAFinal({ onReserva }: CTAFinalProps) {
           </p>
 
           {/* Botón CTA gigante */}
-          <motion.button
-            onClick={onReserva}
-            className="btn-primary"
-            style={{ fontSize: "12px", padding: "20px 60px" }}
-            whileHover={{ scale: 1.02, transition: { duration: 0.25 } }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Reservar Experiencia
-          </motion.button>
+          <motion.button 
+  onClick={onReserva}
+  style={{
+    background: "#C9A84C",
+    color: "#0A0806",
+    border: "1px solid #C9A84C",
+    fontFamily: "Montserrat, system-ui, sans-serif",
+    fontSize: "11px",
+    letterSpacing: "2.5px",
+    textTransform: "uppercase",
+    padding: "16px 36px",
+    cursor: "pointer",
+    fontWeight: 400,
+    transition: "all 0.3s ease",
+  }}
+  whileHover={{
+    background: "transparent",
+    color: "#C9A84C",
+    boxShadow: "0 0 20px rgba(201,168,76,0.2)",
+  }}
+  whileTap={{ scale: 0.98 }}
+>
+  Reservar Experiencia
+</motion.button>
 
           {/* Teléfono */}
           <p
